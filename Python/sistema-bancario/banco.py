@@ -1,25 +1,33 @@
 import os
+
+# Definición de la clase base Persona
 class Persona:
   
+  # Constructor de la clase Persona con nombre y apellido como parámetros
   def __init__(self, nombre, apellido):
     self.nombre = nombre
     self.apellido = apellido
 
+# Definición de la clase Cliente que hereda de Persona
 class Cliente(Persona):
   
+  # Constructor de la clase Cliente con nombre, apellido, número de cuenta y saldo como parámetros
   def __init__(self,nombre, apellido, numero_cuenta, balance = 0):
-    super().__init__(nombre, apellido)
+    super().__init__(nombre, apellido)  # Llama al constructor de la clase base Persona
     self.numero_cuenta = numero_cuenta
     self.balance = balance
 
+  # Método para representar el objeto Cliente como una cadena de texto
   def __str__(self):
-    # imprime su balance
+    # Imprime su balance
     return f"\nCliente: {self.nombre} {self.apellido}\nBalance de cuenta {self.numero_cuenta}: ${self.balance}"
   
+  # Método para depositar dinero en la cuenta del cliente
   def depositar(self, monto_deposito):
     self.balance += monto_deposito
     print(f"Deposito realizado")
   
+  # Método para retirar dinero de la cuenta del cliente
   def retirar(self, monto_retiro):
     if self.balance >= monto_retiro:
       self.balance -= monto_retiro
@@ -27,7 +35,7 @@ class Cliente(Persona):
     else:
       print(f"No tienes suficiente saldo para realizar el retiro")
 
-
+# Función para crear un nuevo cliente
 def crear_cliente():
   nombre_cliente = input("Nombre: ")
   apellido_cliente = input("Apellido: ")
@@ -35,8 +43,9 @@ def crear_cliente():
   cliente = Cliente(nombre_cliente, apellido_cliente, numero_cuenta)
   return cliente
 
+# Función principal que inicia el sistema bancario
 def inicio():
-  os.system("cls")
+  os.system("cls")  # Limpia la pantalla
   mi_cliente = crear_cliente()
   os.system("cls")
   print(mi_cliente)
